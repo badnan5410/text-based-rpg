@@ -1,0 +1,35 @@
+rpg game (beta-version)
+
+what is it?
+- a basic text-based console rpg game
+
+criteria
+1. 3 rooms (start, middle, end)
+2. player character (pc) starts in start room
+3. cannot each end room without key
+4. key is found in chest, in middle room
+5. user controls player via key inputs, prompted by program
+    - press [e] to open chest, press [-> key] to go into room, etc
+
+test code
+
+#create entities
+    player = ch.Player(create_player())
+    chest = obj.Chest()
+    door = obj.Door()
+    star = obj.Star()
+
+    #test the door when its locked
+    door.interact(player) #should not allow as player doesn't have a key
+
+    #open the chest
+    chest.interact(player) #player finds key
+
+    #try opening chest again
+    chest.interact(player) #no key anymore, its empty
+
+    #try the door again
+    door.interact(player) #now should be unlocked and player walks through
+
+    #collect the star
+    star.interact(player) #player collects star and wins the game
