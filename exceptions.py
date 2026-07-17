@@ -1,0 +1,3 @@
+
+class GameMechanicError(Exception):
+    pass

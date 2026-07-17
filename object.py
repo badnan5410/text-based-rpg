@@ -1,5 +1,5 @@
 from entity import Entity
-from main import GameMechanicError
+from exceptions import GameMechanicError
 
 class Object(Entity):
 
@@ -54,5 +54,6 @@ class Star(Object):
 
         if target.entity_type == "player":
             print(f"\n>Congratulations {target.name}, you found the legendary star! You win the game!\n")
+            target.has_star = True
         else:
             raise GameMechanicError(f"\n>Error: Only entity type 'player' can interact with entity type '{self.entity_type}'.\n")
