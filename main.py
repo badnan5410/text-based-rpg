@@ -1,5 +1,4 @@
-import character
-import object
+import character, object, item
 
 def create_player():
     print("""
@@ -31,7 +30,7 @@ def valid_user_choice(prompt, valid_choices):
             return user_choice
 
 def forest_room():
-    if not player.has_key:
+    if not player.check_inventory("key"):
         print(
             f"\n>{player.name}, you find yourself inside a mysterious forest. "
             f"You see two paths in front of you. The path to the right leads "
@@ -78,7 +77,7 @@ def forest_room():
             return HUT_ROOM
 
 def cave_room():
-    if not player.has_key:
+    if not player.check_inventory("key"):
         print(
             f"\n>{player.name}, you find yourself inside a dark cave. "
             f"Inside, you find an old chest. Perhaps it contains treasure? "
@@ -127,7 +126,7 @@ def cave_room():
             return FOREST_ROOM
 
 def hut_room():
-    if not player.has_key:
+    if not player.check_inventory("key"):
         print(
             f"\n>{player.name}, you arrive at the mysterious hut, but the "
             f"door seems to be locked. I wonder what's behind it?\n"
@@ -198,7 +197,7 @@ def start_game():
     while True:
         current_room = update_room(current_room)
 
-        if current_room == HUT_ROOM and player.has_star:
+        if current_room == HUT_ROOM and player.check_inventory("star"):
             break
 
 
@@ -212,9 +211,9 @@ HUT_ROOM = 2
 
 # Entities
 player = character.Player(create_player())
-chest = object.Chest()
+chest = object.Chest([item.Key()])
 door = object.Door()
-star = object.Star()
+star = item.Star()
 
 if __name__ == "__main__":
     main()
